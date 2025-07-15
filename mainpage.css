@@ -1,0 +1,393 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 70px 1fr;
+    min-height: 100vh;
+}
+
+.navbar {
+    grid-column: 1 / -1;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #8e44ad;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #9b59b6;
+}
+
+.sidebar {
+    background-color: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 1.5rem 0;
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 1.5rem;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #f8f9fa;
+    color: #8e44ad;
+}
+
+.sidebar nav ul li a.active {
+    background-color: #f3e6ff;
+    color: #8e44ad;
+    border-left: 4px solid #8e44ad;
+}
+
+.main-content {
+    padding: 2rem 2rem;
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.calendar-section,
+#calendar-section,
+#clients-section,
+#invoices-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#calendar {
+    margin-top: 1rem;
+}
+
+.fc-event {
+    background-color: #8e44ad;
+    border: none;
+    cursor: pointer;
+}
+
+/*prueba */
+
+/* Números de los días del calendario más nítidos */
+.fc .fc-daygrid-day-number {
+    font-size: 1em;
+    font-weight: bold;
+    color: #2c3e50;
+    text-shadow: 0 1px 2px #fff, 0 0 2px #8e44ad33;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+/* Delimita bien los encabezados de los días de la semana */
+.fc .fc-col-header-cell {
+    border-bottom: 2px solid #8e44ad !important;
+    background: #f3e6ff;
+    color: #8e44ad;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.fc .fc-daygrid-day-frame,
+.fc .fc-daygrid-day {
+    border: 1px solid #000000 !important;
+    background-clip: padding-box;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section,
+.fc .fc-scrollgrid-sync-table {
+    border: 1px solid #000000 !important;
+}
+
+.fc .fc-daygrid-day-frame:hover,
+.fc .fc-daygrid-day:hover {
+    box-shadow: 0 0 8px #8e44ad55;
+    border-color: #6c3483 !important;
+    z-index: 2;
+    position: relative;
+}
+
+.fc-event, .fc .fc-event {
+    border: 1px solid #6c3483 !important;
+    background-color: #8e44ad;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.05em;
+    transition: box-shadow 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.fc-event:hover, .fc .fc-event:hover {
+    box-shadow: 0 0 12px #8e44ad99;
+    border-color: #512e5f !important;
+    background: #a569bd;
+}
+
+/* Opcional: resalta los bordes de los eventos */
+
+.fc-event {
+    border: 1px solid #000000 !important;
+    background-color: #8e44ad;
+    cursor: pointer;
+}
+
+/*prueba */
+
+/* Reduce el tamaño del título del mes/año en el calendario */
+.fc-toolbar-title {
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+.clients-table {
+    border: 2px solid #010002;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+.clients-table th, .clients-table td {
+    padding: 0.8rem 0.5rem;
+    border-bottom: 2px solid #000000;
+    border-right: 2px solid #040005;
+    text-align: left;
+}
+.clients-table th {
+    background: #f3e6ff;
+    color: #000000;
+    font-size: 1.05rem;
+    border-top: 2px solid #000000;
+}
+.clients-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Tabs en facturación */
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.tab-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #eee;
+    color: #333;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.tab-btn.active {
+    background: #8e44ad;
+    color: #fff;
+}
+.tab-content {
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+    }
+    .sidebar {
+        grid-row: 2;
+        min-width: 100%;
+        max-width: 100%;
+        height: auto;
+        box-shadow: none;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 0;
+    }
+    .sidebar nav ul {
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+    .main-content {
+        grid-row: 3;
+        padding: 1.2rem 0.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 0.7rem 0.5rem;
+        font-size: 1rem;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    .user-actions {
+        gap: 0.7rem;
+    }
+    .sidebar {
+        padding: 0.3rem 0.2rem;
+    }
+    .sidebar nav ul {
+        flex-direction: row;
+        gap: 0.2rem;
+    }
+    .calendar-section,
+    #calendar-section,
+    #clients-section,
+    #invoices-section {
+        padding: 0.7rem 0.2rem;
+        /*border: 1px solid #000000;*/
+    }
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    #calendar {
+        font-size: 0.95rem;
+    }
+    .btn, .btn-primary {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.7rem 0.5rem;
+        justify-content: center;
+        min-width: unset;
+    }
+    h2, label {
+        font-size: 1.1rem;
+    }
+
+    .clients-table th, .clients-table td {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.97rem;
+    }
+    .tab-content {
+        padding: 0.7rem;
+    }
+    .tabs {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"] {
+    font-size: 1rem;
+    padding: 0.5rem 0.6rem;
+    }
+    input:focus {
+    border-color: #8e44ad;
+    outline: none;
+    }
+    
+
+    
+}
+
+/* Extra: Evita que los formularios y tablas se "aplasten" demasiado */
+@media (max-width: 600px) {
+    .tab-content,
+    .calendar-section,
+    #calendar-section,
+    #clients-section,
+    #invoices-section {
+        padding: 0.3rem 0.05rem;
+    }
+    .clients-table th, .clients-table td {
+        padding: 0.3rem 0.1rem;
+        font-size: 0.9rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+     .fc-event, .fc .fc-event {
+        font-size: 1rem !important;
+        padding: 0.2em 0.3em !important;
+        min-height: 1.6em;
+        line-height: 1.2;
+    }
+    .fc .fc-daygrid-day-frame,
+    .fc .fc-daygrid-day {
+        border-width: 1px !important;
+    }
+
+   
+}
+

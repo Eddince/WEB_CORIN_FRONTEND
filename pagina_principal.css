@@ -1,0 +1,821 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #909091;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 70px 1fr;
+    min-height: 100vh;
+}
+
+.navbar {
+    grid-column: 1 / -1;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #8e44ad;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #9b59b6;
+}
+
+.sidebar {
+    background-color: rgb(243, 209, 234);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 1.5rem 0;
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 1.5rem;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #f8f9fa;
+    color: #8e44ad;
+}
+
+.sidebar nav ul li a.active {
+    background-color: #f3e6ff;
+    color: #8e44ad;
+    border-left: 4px solid #8e44ad;
+}
+
+.main-content {
+    padding: 2rem 2rem;
+    overflow-y: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.calendar-section,
+#calendar-section,
+#clients-section,
+#invoices-section {
+    background-color: rgb(245, 245, 245);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#calendar {
+    margin-top: 1rem;
+}
+
+.fc-event {
+    background-color: #8e44ad;
+    border: none;
+    cursor: pointer;
+}
+
+.fc .fc-daygrid-day {
+    border-right: 1px solid #444 !important;
+    border-bottom: 1px solid #444 !important;
+    /* Puedes ajustar el color y grosor según tu preferencia */
+}
+
+/* Números de los días del calendario más nítidos */
+.fc .fc-daygrid-day-number {
+    font-size: 1em;
+    font-weight: bold;
+    color: #2c3e50;
+    text-shadow: 0 1px 2px #fff, 0 0 2px #8e44ad33;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+/* Delimita bien los encabezados de los días de la semana */
+.fc .fc-col-header-cell {
+    border-bottom: 2px solid #8e44ad !important;
+    background: #f7a2d1;
+    color: #8e44ad;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Bordes del calendario */
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section,
+.fc .fc-scrollgrid-sync-table {
+    border: 1px solid #000000 !important;
+}
+
+/*donde pasa el cursor hace una sombra*/
+.fc .fc-daygrid-day-frame:hover,
+.fc .fc-daygrid-day:hover {
+    box-shadow: 0 0 15px #8e44ad55;
+    border-color: #6c3483 !important;
+    z-index: 2;
+    position: relative;
+}
+/*borde del evento */
+
+.fc-event {
+    border: 1px solid #000000 !important;
+    background-color: #8e44ad;
+    cursor: pointer;
+}
+
+/* */
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+.clients-table th, .clients-table td {
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #6e6d6e;
+    text-align: left;
+}
+.clients-table th {
+    background: #f3e6ff;
+    color: #8e44ad;
+    font-size: 1.05rem;
+}
+.clients-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Tabs en facturación */
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.tab-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #eee;
+    color: #333;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.tab-btn.active {
+    background: #8e44ad;
+    color: #fff;
+}
+.tab-content {
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+    }
+    .sidebar {
+        grid-row: 2;
+        min-width: 100%;
+        max-width: 100%;
+        height: auto;
+        box-shadow: none;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 0;
+    }
+    .sidebar nav ul {
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+    .main-content {
+        grid-row: 3;
+        padding: 1.2rem 0.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 0.7rem 0.5rem;
+        font-size: 1rem;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    .user-actions {
+        gap: 0.7rem;
+    }
+    .sidebar {
+        padding: 0.3rem 0.2rem;
+    }
+    .sidebar nav ul {
+        flex-direction: row;
+        gap: 0.2rem;
+    }
+    .calendar-section,
+    #calendar-section,
+    #clients-section,
+    #invoices-section {
+        background-color: #928e8e;
+        padding: 0.7rem 0.2rem;
+    }
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    #calendar {
+        font-size: 0.95rem;
+    }
+    .btn, .btn-primary {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.7rem 0.5rem;
+        justify-content: center;
+        min-width: unset;
+    }
+    h2, label {
+        font-size: 1.1rem;
+    }
+
+    .clients-table th, .clients-table td {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.97rem;
+    }
+    .tab-content {
+        padding: 0.7rem;
+    }
+    .tabs {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"] {
+    font-size: 1rem;
+    padding: 0.5rem 0.6rem;
+    }
+    input:focus {
+    border-color: #8e44ad;
+    outline: none;
+    }
+    
+
+    
+}
+
+/* Extra: Evita que los formularios y tablas se "aplasten" demasiado */
+@media (max-width: 400px) {
+    .tab-content,
+    .calendar-section,
+    #calendar-section,
+    #clients-section,
+    #invoices-section {
+        padding: 0.3rem 0.05rem;
+    }
+    .clients-table th, .clients-table td {
+        padding: 0.3rem 0.1rem;
+        font-size: 0.9rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+}
+
+
+/*facturas */
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.invoice-table th, .invoice-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-table th {
+    background-color: #f5f5f5;
+}
+
+.invoice-modal .swal2-popup {
+    padding: 2rem;
+}
+
+.invoice-modal .swal2-html-container {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 10px;
+}
+
+
+/* foooterer*/
+.custom-footer {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+/* Estilo base del botón */
+.custom-footer-btn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(103, 58, 183, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Efectos hover y active */
+.custom-footer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(103, 58, 183, 0.4);
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+.custom-footer-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(103, 58, 183, 0.3);
+}
+
+/* Icono Font Awesome */
+.custom-footer-btn i {
+    font-size: 1.1em;
+}
+
+/*///////////Pruebaaaaaa//////////////////*/
+/* Estilos generales para la creacion de cliente y su factura */
+#create-client-tab {
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.client-data-section, .offers-section, .extras-section {
+    margin-bottom: 2.5rem;
+}
+
+h3 {
+    color: #4a4a4a;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Campos de entrada elegantes */
+.elegant-input {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.elegant-input i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6e8efb;
+}
+
+.elegant-input input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background: transparent;
+}
+
+.elegant-input input:focus {
+    outline: none;
+    border-bottom-color: #6e8efb;
+}
+
+/* Tarjetas de ofertas */
+.offer-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.offer-card {
+    display: block;
+    cursor: pointer;
+}
+
+.offer-content {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: 100%;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-card input[type="radio"]:checked + .offer-content {
+    border-color: #6e8efb;
+    background: linear-gradient(135deg, rgba(110, 142, 251, 0.05) 0%, rgba(167, 119, 227, 0.05) 100%);
+    box-shadow: 0 5px 15px rgba(110, 142, 251, 0.15);
+}
+
+.offer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.offer-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #4a4a4a;
+}
+
+.offer-price {
+    font-weight: bold;
+    color: #6e8efb;
+    font-size: 1.2rem;
+}
+
+.offer-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.offer-features li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+}
+
+.offer-features i {
+    color: #6e8efb;
+}
+
+.offer-select-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #6e8efb;
+    color: white;
+    padding: 5px 15px;
+    border-bottom-left-radius: 10px;
+    font-size: 0.8rem;
+    transform: translateY(-100%);
+    transition: all 0.3s;
+    opacity: 0;
+}
+
+.offer-card input[type="radio"]:checked + .offer-content .offer-select-indicator {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Estilos para extras corregidos */
+.extra-item {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.extra-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.extra-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.extra-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.extra-checkbox input[type="checkbox"]:checked ~ .custom-checkbox {
+    background-color: #6e8efb;
+    border-color: #6e8efb;
+}
+
+.custom-checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.extra-checkbox input[type="checkbox"]:checked ~ .custom-checkbox:after {
+    display: block;
+}
+
+.extra-name {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+}
+
+.extra-qty {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: #e0e0e0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.qty-btn:hover {
+    background: #d0d0d0;
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 0 5px;
+    /*-moz-appearance: textfield;*/
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Botones de acción */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-submit, .btn-cancel {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+}
+
+.btn-cancel {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+}
+
+/*Boton de borrar */
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    margin-left: 5px;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+
+/* Estilos para la sección financiera */
+/* Estilos para la sección financiera */
+.finance-section {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.finance-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.finance-table th, .finance-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.finance-table th {
+    background-color: #f3e6ff;
+    color: #8e44ad;
+    font-weight: 600;
+}
+
+.finance-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.finance-table input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.finance-table input:focus {
+    border-color: #8e44ad;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.2);
+}
+
+.finance-table .type-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.finance-table .type-oferta {
+    background-color: #e6f7ff;
+    color: #1890ff;
+}
+
+.finance-table .type-extra {
+    background-color: #f6ffed;
+    color: #52c41a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .finance-table th, .finance-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .finance-actions {
+        flex-direction: column;
+    }
+}
+
+/* Estilos para los spinners */
+.fa-spinner {
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilos para botones deshabilitados */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
