@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korinapp</title>
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="pagina_principal.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra de navegación -->
+        <header class="navbar">
+            <div class="logo">
+                <i class="fas fa-camera"></i>
+                <span>Korinapp</span>
+            </div>
+            <div class="user-actions">
+                <span id="user-greeting">Bienvenido, Admin</span> 
+                <button id="logout-btn" class="btn btn-primary">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-section="calendar"><i class="fas fa-calendar-check"></i> Calendario</a></li>
+                    <li><a href="#" data-section="clients"><i class="fas fa-users"></i> Clientes</a></li>
+                    <li><a href="#" data-section="invoices"><i class="fas fa-file-invoice"></i> Facturas</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Calendario -->
+            <section id="calendar-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Agenda de Sesiones</h2>
+                    <button id="add-event-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nuevo Turno
+                    </button>
+                </div>
+                <div id="calendar"></div>
+            </section>
+            <!-- Clientes -->
+            <section id="clients-section" style="display:none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Lista de Clientes</h2>
+                    <button id="add-client-btn" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Nuevo Cliente
+                    </button>
+                </div>
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients-list">
+                       
+                    </tbody>
+                </table>
+            </section>
+            <!-- Facturas -->
+            <section id="invoices-section" style="display:none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-file-invoice"></i> Facturación</h2>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="create-client">Crear Cliente</button>
+                    <button class="tab-btn" data-tab="finance-calc">Cálculo Financiero</button>
+                </div>
+                <div class="tab-content" id="create-client-tab">
+                    
+    <form id="create-client-form">
+        <!-- Sección para Creacion de Datos del Cliente -->
+        <div class="client-data-section">
+            <h3><i class="fas fa-user-circle"></i> Información del Cliente</h3>
+            <div class="form-group elegant-input">
+                <i class="fas fa-user"></i>
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group elegant-input">
+                <i class="fas fa-phone"></i>
+                <input type="tel" name="telefono" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group elegant-input">
+                <i class="fas fa-calendar-day"></i>
+                <input type="date" name="fecha" required>
+            </div>
+        </div>
+
+        <!-- Sección de Ofertas -->
+        <div class="offers-section">
+            <h3><i class="fas fa-star"></i> Selecciona una Oferta</h3>
+            <div class="offer-cards-container">
+                <!-- Oferta 1 -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="1" required hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>#1</h4>
+                            <span class="offer-price">$200</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 10 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> 1 Photobook 6x8</li>
+                            <li><i class="fas fa-check-circle"></i> 2 cambios de look</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+
+                <!-- Oferta 2 -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="2" hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>#2</h4>
+                            <span class="offer-price">$350</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 20 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> 2 Photobooks 8x12</li>
+                            <li><i class="fas fa-check-circle"></i> 4 cambios de look</li>
+                            <li><i class="fas fa-check-circle"></i> 1 Lona 60x90</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+
+                <!-- Oferta 3 -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="3" hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>#3</h4>
+                            <span class="offer-price">$350</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 20 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> 2 Photobooks 8x12</li>
+                            <li><i class="fas fa-check-circle"></i> 4 cambios de look</li>
+                            <li><i class="fas fa-check-circle"></i> 1 Lona 60x90</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+
+                <!-- Oferta 4 -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="4" hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>#4</h4>
+                            <span class="offer-price">$350</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 20 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> 2 Photobooks 8x12</li>
+                            <li><i class="fas fa-check-circle"></i> 4 cambios de look</li>
+                            <li><i class="fas fa-check-circle"></i> 1 Lona 60x90</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+
+                <!-- Oferta 5 -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="5" hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>#5</h4>
+                            <span class="offer-price">$350</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 20 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> 2 Photobooks 8x12</li>
+                            <li><i class="fas fa-check-circle"></i> 4 cambios de look</li>
+                            <li><i class="fas fa-check-circle"></i> 1 Lona 60x90</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+
+                <!-- Oferta 6 -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="6" hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>#6</h4>
+                            <span class="offer-price">$350</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 20 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> 2 Photobooks 8x12</li>
+                            <li><i class="fas fa-check-circle"></i> 4 cambios de look</li>
+                            <li><i class="fas fa-check-circle"></i> 1 Lona 60x90</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+
+                
+
+                <!-- Oferta VIP -->
+                <label class="offer-card">
+                    <input type="radio" name="oferta" value="VIP" hidden>
+                    <div class="offer-content">
+                        <div class="offer-header">
+                            <h4>VIP</h4>
+                            <span class="offer-price">$700</span>
+                        </div>
+                        <ul class="offer-features">
+                            <li><i class="fas fa-check-circle"></i> 50 fotos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> Photobook Premium</li>
+                            <li><i class="fas fa-check-circle"></i> 8 cambios de look</li>
+                            <li><i class="fas fa-check-circle"></i> Gigantografía</li>
+                            <li><i class="fas fa-check-circle"></i> Maquillaje VIP</li>
+                            <li><i class="fas fa-check-circle"></i> Vestuario premium</li>
+                        </ul>
+                        <div class="offer-select-indicator">
+                            <i class="fas fa-check"></i> Seleccionada
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Reemplaza la sección de extras con este código -->
+<div class="extras-section">
+    <h3><i class="fas fa-plus-circle"></i> Productos Extras</h3>
+    <div class="extras-grid">
+        <!-- Extra 1 -->
+        <div class="extra-item">
+            <div class="extra-control">
+                <label class="extra-checkbox">
+                    <input type="checkbox" name="extra" value="12_postalitas">
+                    <span class="custom-checkbox"></span>
+                    <span class="extra-name">12 postalitas</span>
+                </label>
+                <div class="extra-qty">
+                    <button type="button" class="qty-btn minus" data-target="12_postalitas_qty">-</button>
+                    <input type="number" name="12_postalitas_qty" min="0" value="0" class="qty-input" disabled>
+                    <button type="button" class="qty-btn plus" data-target="12_postalitas_qty">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Extra 2 -->
+        <div class="extra-item">
+            <div class="extra-control">
+                <label class="extra-checkbox">
+                    <input type="checkbox" name="extra" value="llavero">
+                    <span class="custom-checkbox"></span>
+                    <span class="extra-name">Llavero</span>
+                </label>
+                <div class="extra-qty">
+                    <button type="button" class="qty-btn minus" data-target="llavero_qty">-</button>
+                    <input type="number" name="llavero_qty" min="0" value="0" class="qty-input" disabled>
+                    <button type="button" class="qty-btn plus" data-target="llavero_qty">+</button>
+                </div>
+            </div>
+        </div>
+       
+
+        <!-- Botones de acción -->
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-check-circle"></i> Confirmar Factura
+            </button>
+            <button type="button" id="cancel-client-btn" class="btn-cancel">
+                <i class="fas fa-times-circle"></i> Cancelar
+            </button>
+        </div>
+    </form>
+</div>
+
+               
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"--></script>
+    <script src="pagina_principal.js"></script>
+</body>
+</html>
