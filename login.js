@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. "Despertar" el backend al cargar
     wakeUpBackend();
+    setInterval(wakeUpBackend, 5 * 60 * 1000);
 
 const API_URL = 'https://web-corin-backend.onrender.com/login';
 
