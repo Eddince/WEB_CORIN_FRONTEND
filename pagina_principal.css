@@ -819,3 +819,96 @@ h3 {
     opacity: 0.7;
     cursor: not-allowed;
 }
+
+/* PRUEBAAAA MOVILESSSSS */
+
+/* Estilos específicos para facturas en móviles */
+@media (max-width: 600px) {
+  .invoice-modal .swal2-popup {
+    max-width: 95vw;
+    width: 95vw !important;
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+
+  .invoice-table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .invoice-table th,
+  .invoice-table td {
+    padding: 6px 8px;
+    font-size: 12px;
+    min-width: 70px; /* Ancho mínimo para que los números no se aplasten */
+  }
+
+  .invoice-table th {
+    font-size: 12px;
+    padding: 8px;
+    position: sticky;
+    left: 0;
+    background: #f5f5f5;
+  }
+
+  /* Estilo para mantener visibles los encabezados al hacer scroll horizontal */
+  .invoice-table thead {
+    display: table-header-group;
+  }
+
+  /* Asegurar que las celdas con números mantengan su formato */
+  .invoice-table td:nth-child(n+2) {
+    text-align: right;
+    font-family: 'Courier New', monospace; /* Fuente monoespaciada para números */
+    font-weight: bold;
+  }
+
+  /* Estilos específicos para la sección de resumen financiero */
+  .invoice-table tr td:first-child {
+    white-space: normal;
+    min-width: 120px;
+  }
+
+  /* Ajustes para la factura de control */
+  .swal2-popup .invoice-table {
+    max-width: 100%;
+  }
+
+  .swal2-popup h4, 
+  .swal2-popup h5 {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  .swal2-popup ul {
+    padding-left: 20px;
+    font-size: 13px;
+  }
+
+  /* Ajustar el footer con el botón */
+  .footer-buttons .custom-footer-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Para pantallas muy pequeñas (menos de 400px) */
+@media (max-width: 400px) {
+  .invoice-table th,
+  .invoice-table td {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  .invoice-modal .swal2-popup {
+    font-size: 13px;
+  }
+
+  .footer-buttons .custom-footer-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
