@@ -694,17 +694,42 @@ async function showClientInvoice(clientId) {
 
             // Detalles de extras
 
-            const extrasDetails = hasExtras ? cliente.extras.map(extra => `
+            const extrasSection = hasExtras ?  `
+            <h5>Productos Extras:</h5>
+        <table class="invoice-table">
+            <thead>
                 <tr>
-                    <td>${extra.precios.nombre_producto.replace(/_/g, ' ')} (x${extra.cantidad})</td>
-                    <td>$${(extra.precios.precio_total * extra.cantidad).toFixed(2)}</td>
-                    <td>$${(extra.precios.subtotal_impresion * extra.cantidad).toFixed(2)}</td>
-                    <td>$${(extra.precios.subtotal_mano_obra * extra.cantidad).toFixed(2)}</td>
-                    <td>$${(extra.precios.precio_total * extra.cantidad - 
-                           extra.precios.subtotal_impresion * extra.cantidad - 
-                           extra.precios.subtotal_mano_obra * extra.cantidad).toFixed(2)}</td>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Impresión</th>
+                    <th>Mano Obra</th>
+                    <th>Ganancia</th>
                 </tr>
-            `).join('') : 0;
+            </thead>
+            <tbody>
+                ${cliente.extras.map(extra => `
+                    <tr>
+                        <td>${extra.precios.nombre_producto.replace(/_/g, ' ')} (x${extra.cantidad})</td>
+                        <td>$${(extra.precios.precio_total * extra.cantidad).toFixed(2)}</td>
+                        <td>$${(extra.precios.subtotal_impresion * extra.cantidad).toFixed(2)}</td>
+                        <td>$${(extra.precios.subtotal_mano_obra * extra.cantidad).toFixed(2)}</td>
+                        <td>$${(extra.precios.precio_total * extra.cantidad - 
+                               extra.precios.subtotal_impresion * extra.cantidad - 
+                               extra.precios.subtotal_mano_obra * extra.cantidad).toFixed(2)}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    ` : `           <h5>Productos Extras:</h5>
+                    <div style="margin-bottom: 10px;"></div>
+                    <tr>
+                        <td colspan="5" style="text-align: center; font-style: italic;">
+                            No se seleccionaron productos extras
+                        </td>
+                    </tr>
+                    <div style="margin-bottom: 10px;"></div>
+                ` ; // Si no hay extras, devuelve cadena
+
 
             return `
                 <div style="text-align: left; max-height: 70vh; overflow-y: auto;">
@@ -726,21 +751,9 @@ async function showClientInvoice(clientId) {
                         </tbody>
                     </table>
                     
-                    <h5>Productos Extras:</h5>
-                    <table class="invoice-table">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Impresión</th>
-                                <th>Mano Obra</th>
-                                <th>Ganancia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${extrasDetails}
-                        </tbody>
-                    </table>
+                    ${extrasSection}
+                        
+                    
                     
                     <h5>Resumen Financiero:</h5>
                     <table class="invoice-table">
