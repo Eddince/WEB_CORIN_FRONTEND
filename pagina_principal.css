@@ -912,3 +912,81 @@ h3 {
     font-size: 13px;
   }
 }
+
+/* PRUEBA EDICION DE PRECIOSSSSSSS */
+/* Estilos para la tabla de edición de precios en móviles */
+@media (max-width: 768px) {
+  .finance-section {
+    padding: 10px;
+  }
+  
+  .finance-table {
+    font-size: 14px;
+  }
+  
+  .finance-table th, 
+  .finance-table td {
+    padding: 8px 5px;
+  }
+  
+  .finance-table input[type="number"] {
+    width: 100%;
+    min-width: 60px; /* Ancho mínimo para que los números sean legibles */
+    padding: 8px 5px;
+    font-size: 14px;
+    font-family: 'Courier New', monospace; /* Fuente monoespaciada para números */
+    font-weight: bold;
+    text-align: right;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .finance-table .type-badge {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+  
+  .finance-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .finance-actions .btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* Ajustes adicionales para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .finance-table {
+    font-size: 13px;
+  }
+  
+  .finance-table input[type="number"] {
+    font-size: 13px;
+    padding: 6px 4px;
+    min-width: 50px;
+  }
+  
+  .finance-table th, 
+  .finance-table td {
+    padding: 6px 3px;
+  }
+  
+  .finance-table .ganancia-cell {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+}
+
+/* Estilo para resaltar los inputs cuando están enfocados */
+.finance-table input[type="number"]:focus {
+  border-color: #8e44ad;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.2);
+  background-color: #f9f0ff;
+}
