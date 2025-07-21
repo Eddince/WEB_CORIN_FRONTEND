@@ -851,7 +851,7 @@ async function showClientInvoice(clientId) {
                         ${oferta.bolsa ? '<li>Incluye bolsa</li>' : ''}
                         ${oferta.postalitas ? `<li>${oferta.postalitas} postalitas</li>` : ''}
                         ${oferta.llavero ? '<li>Incluye llavero</li>' : ''}
-                        ${oferta.gigantrografia ? '<li>Incluye gigantografia</li>' : ''}
+                        ${oferta.gigantografia ? '<li>Incluye gigantografia</li>' : ''}
                         ${oferta.cuadro_acrilico ? '<li>Incluye cuadro acrilico</li>' : ''}
                         ${oferta.revista ? '<li>Incluye revista</li>' : ''}
                     </ul>
